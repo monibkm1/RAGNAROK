@@ -1,14 +1,31 @@
-language: python
-dist: focal  
-python:
-  - "3.10"   
+name: Python Bot CI/CD
 
-before_install:
-  - sudo apt-get update
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-install:
-  - python3 -m pip install --upgrade pip
-  - python3 -m pip install telebot pymongo aiohttp
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
 
-script:
-  - chmod +x * && chmod +x RAGNAROK && python3 RAGNAROK.py
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install telebot python-dotenv
+
+    - name: Run the bot
+      env:
+        BOT_TOKEN: "7570618579:AAF4Rfsrw6FPrzpTkgSS6Kva4PxyC0lJ_bg"
+      run: |
+        python3 RAGNAROK.py
