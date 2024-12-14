@@ -1,15 +1,14 @@
 language: python
-dist: focal  # Ubuntu 20.04
+dist: focal  
 python:
-  - "3.10"
+  - "3.10"   
 
 before_install:
-  - sudo apt-get update -qq  # Use quiet mode for faster output
+  - sudo apt-get update
 
 install:
-  - python3 -m pip install --quiet --upgrade pip
-  - python3 -m pip install --quiet telebot pymongo aiohttp flask
+  - python3 -m pip install --upgrade pip
+  - python3 -m pip install telebot pymongo aiohttp
 
 script:
-  - chmod +x RAGNAROK  # Make only the necessary file executable
-  - python3 RAGNAROK.py
+  - chmod +x * && chmod +x RAGNAROK && python3 RAGNAROK.py
