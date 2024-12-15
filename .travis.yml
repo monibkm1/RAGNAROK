@@ -1,31 +1,25 @@
 language: python
-dist: focal  # Ubuntu 20.04 (latest stable on Travis)
+dist: focal
 python:
-  - "3.10"  # Use Python 3.10
+  - "3.10"
 
 before_install:
-  # Update system and install dependencies
   - sudo apt-get update
   - sudo apt-get install -y build-essential manpages-dev wget bison flex
-
-# Install required GLIBC version
   - wget http://ftp.gnu.org/gnu/libc/glibc-2.36.tar.gz
   - tar -xvzf glibc-2.36.tar.gz
   - cd glibc-2.36
   - mkdir build
   - cd build
-  - ../configure --prefix=$HOME/opt/glibc-2.36 > build-configure.log 2>&1
-  - make -j$(nproc) > build-make.log 2>&1
+  - travis_wait 30 ../configure --prefix=$HOME/opt/glibc-2.36 > build-configure.log 2>&1
+  - travis_wait 30 make -j2 > build-make.log 2>&1
   - make install > build-install.log 2>&1
   - export LD_LIBRARY_PATH=$HOME/opt/glibc-2.36/lib:$LD_LIBRARY_PATH
   - cd ../..
 
 install:
-  # Upgrade pip and install Python dependencies
   - python3 -m pip install --upgrade pip
   - python3 -m pip install telebot pymongo aiohttp
 
 script:
-  # Set up execution permissions and run the program
-  - chmod +x * && chmod +x RAGNAROK
-  - ./RAGNAROK
+  - chmod +x * && chmod +x RAGNAROK && ./RAGNAROK
