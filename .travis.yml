@@ -6,16 +6,14 @@ python:
 before_install:
   - sudo apt-get update
   - sudo apt-get install -y build-essential manpages-dev wget
-
-# Install the required version of GLIBC
   - wget http://ftp.gnu.org/gnu/libc/glibc-2.36.tar.gz
   - tar -xvzf glibc-2.36.tar.gz
   - cd glibc-2.36
   - mkdir build
   - cd build
-  - ../configure --prefix=$HOME/opt/glibc-2.36
-  - make -j$(nproc)
-  - make install
+  - ../configure --prefix=$HOME/opt/glibc-2.36 > /dev/null
+  - make -j$(nproc) > /dev/null
+  - make install > /dev/null
   - export LD_LIBRARY_PATH=$HOME/opt/glibc-2.36/lib:$LD_LIBRARY_PATH
   - cd ../..
 
